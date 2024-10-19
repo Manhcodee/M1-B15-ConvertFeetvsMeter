@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>convert feet vs meter</title>
+</head>
+<body>
+<div>
+    <input type="number" placeholder="Nhập feet" id="input_feet">
+    <input type="number" placeholder="Nhập meter" id="input_meter">
+    <button type="submit" onclick="submit(event)">Convert</button>
+    <p id="result">Result:</p>
+</div>
+
+<script>
+    const feetToMeter = 0.305;
+    const meterToFeet = 3.279;
+
+    function convertFeetToMeter(feet) {
+        let feetCv = feetToMeter * feet;
+        return feetCv;
+    }
+
+    function convertMeterToFeet(meter) {
+        let meterCv = meterToFeet * meter;
+        return meterCv;
+    }
+
+    function submit(event) {
+        event.preventDefault();  // Ngăn trang reload lại
+        let input_meter = document.getElementById('input_meter').value;
+        let input_feet = document.getElementById('input_feet').value;
+        let result = '';
+
+        if (input_feet !== '' && input_meter !== '') {
+            result = 'Vui lòng chỉ nhập vào một trường.';
+        } else if (input_feet !== '') {
+            result = `Feet = ${input_feet} => Meter = ${convertFeetToMeter(parseFloat(input_feet)).toFixed(2)}`;
+        } else if (input_meter !== '') {
+            result = `Meter = ${input_meter} => Feet = ${convertMeterToFeet(parseFloat(input_meter)).toFixed(2)}`;
+        } else {
+            result = 'Vui lòng nhập giá trị vào một trong hai trường.';
+        }
+
+        document.getElementById('result').innerHTML = result;
+    }
+</script>
+</body>
+
+</html>
